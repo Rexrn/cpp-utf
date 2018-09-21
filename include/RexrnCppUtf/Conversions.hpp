@@ -35,26 +35,26 @@ std::string convert( char const* begin_, char const* end_ )
 }
 
 template <Encoding>
-struct CharacterConstIterator{ using Type = const char*; };
+struct EncodingConstIterator{ using Type = const char*; };
 
 template <>
-struct CharacterConstIterator<Ascii>{ using Type = const char*; };
+struct EncodingConstIterator<Ascii>{ using Type = const char*; };
 
 template <>
-struct CharacterConstIterator<Utf8>{ using Type = Utf8ConstIterator; };
+struct EncodingConstIterator<Utf8>{ using Type = Utf8ConstIterator; };
 
 template <>
-struct CharacterConstIterator<Utf16>{ using Type = Utf16ConstIterator; };
+struct EncodingConstIterator<Utf16>{ using Type = Utf16ConstIterator; };
 
 template <>
-struct CharacterConstIterator<Utf32>{ using Type = Utf32ConstIterator; };
+struct EncodingConstIterator<Utf32>{ using Type = Utf32ConstIterator; };
 
 }
 
 template <Encoding TSourceEncoding, Encoding TTargetEncoding>
 std::string convert( char const* begin_, char const* end_ )
 {
-	return impl::convert< impl::CharacterConstIterator<TSourceEncoding>::Type, TSourceEncoding, TTargetEncoding >( begin_, end_ );  
+	return impl::convert< impl::EncodingConstIterator<TSourceEncoding>::Type, TSourceEncoding, TTargetEncoding >( begin_, end_ );  
 }
 
 template <Encoding TSourceEncoding, Encoding TTargetEncoding>
