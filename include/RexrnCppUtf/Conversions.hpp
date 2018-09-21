@@ -25,10 +25,10 @@ std::string convert( char const* begin_, char const* end_ )
 	{
 		char32_t character = decodeCharacter<TSourceEncoding>(*it);
 
-		auto bytes = encodeCharacter<TTargetEncoding>(character);
+		auto encoded = encodeCharacter<TTargetEncoding>(character);
 
-		for(char byte : bytes)
-			result.push_back(byte);
+		for(auto i = 0; i < encoded.second; i++)
+			result.push_back((encoded.first >> 8*i) & 0xFF); // Extract nth byte.
 	}
 	result.shrink_to_fit();
 	return result;
