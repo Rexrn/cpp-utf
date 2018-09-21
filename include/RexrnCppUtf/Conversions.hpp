@@ -54,7 +54,7 @@ struct CharacterConstIterator<Utf32>{ using Type = Utf32ConstIterator; };
 template <Encoding TSourceEncoding, Encoding TTargetEncoding>
 std::string convert( char const* begin_, char const* end_ )
 {
-	return impl::convert< impl::CharacterConstIterator<TSourceEncoding>, TSourceEncoding, TTargetEncoding >( begin_, end_ );  
+	return impl::convert< impl::CharacterConstIterator<TSourceEncoding>::Type, TSourceEncoding, TTargetEncoding >( begin_, end_ );  
 }
 
 template <Encoding TSourceEncoding, Encoding TTargetEncoding>
